@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxl.job.executor.mapper.GpsSnapshotMapper" >
+  <resultMap id="BaseResultMap" type="com.xxl.job.executor.entity.GpsSnapshot" >
+    <id column="device_code" property="deviceCode" jdbcType="VARCHAR" />
+    <result column="alarm_status" property="alarmStatus" jdbcType="INTEGER" />
+    <result column="vehicle_status" property="vehicleStatus" jdbcType="INTEGER" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="speed" property="speed" jdbcType="DOUBLE" />
+    <result column="direction" property="direction" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="BIGINT" />
+    <result column="mile" property="mile" jdbcType="DOUBLE" />
+    <result column="oil" property="oil" jdbcType="DOUBLE" />
+    <result column="speed2" property="speed2" jdbcType="DOUBLE" />
+    <result column="signal_status" property="signalStatus" jdbcType="INTEGER" />
+    <result column="bst" property="bst" jdbcType="INTEGER" />
+    <result column="io_status" property="ioStatus" jdbcType="INTEGER" />
+    <result column="analog" property="analog" jdbcType="VARCHAR" />
+    <result column="wifi" property="wifi" jdbcType="INTEGER" />
+    <result column="satellite_num" property="satelliteNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="vendor_code" property="vendorCode" jdbcType="VARCHAR" />
+    <result column="heartbeat_time" property="heartbeatTime" jdbcType="VARCHAR" />
+    <result column="bst_time" property="bstTime" jdbcType="BIGINT" />
+    <result column="location_time" property="locationTime" jdbcType="DATE" />
+    <result column="alarm_time" property="alarmTime" jdbcType="DATE" />
+    <result column="protocol_type" property="protocolType" jdbcType="VARCHAR" />
+    <result column="voltage" property="voltage" jdbcType="DOUBLE" />
+    <result column="miles" property="miles" jdbcType="DOUBLE" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_gps_snapshot
+    where device_code = #{deviceCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xxl.job.executor.entity.GpsSnapshot" >
+    insert into t_gps_snapshot (device_code, alarm_status, vehicle_status, 
+      lat, lon, height, speed, 
+      direction, time, mile, 
+      oil, speed2, signal_status, 
+      bst, io_status, analog, 
+      wifi, satellite_num, create_time, 
+      vendor_code, heartbeat_time, bst_time, 
+      location_time, alarm_time, protocol_type, 
+      voltage, miles)
+    values (#{deviceCode,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=INTEGER}, #{vehicleStatus,jdbcType=INTEGER}, 
+      #{lat,jdbcType=DOUBLE}, #{lon,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, #{speed,jdbcType=DOUBLE}, 
+      #{direction,jdbcType=DOUBLE}, #{time,jdbcType=BIGINT}, #{mile,jdbcType=DOUBLE}, 
+      #{oil,jdbcType=DOUBLE}, #{speed2,jdbcType=DOUBLE}, #{signalStatus,jdbcType=INTEGER}, 
+      #{bst,jdbcType=INTEGER}, #{ioStatus,jdbcType=INTEGER}, #{analog,jdbcType=VARCHAR}, 
+      #{wifi,jdbcType=INTEGER}, #{satelliteNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{vendorCode,jdbcType=VARCHAR}, #{heartbeatTime,jdbcType=VARCHAR}, #{bstTime,jdbcType=BIGINT}, 
+      #{locationTime,jdbcType=DATE}, #{alarmTime,jdbcType=DATE}, #{protocolType,jdbcType=VARCHAR}, 
+      #{voltage,jdbcType=DOUBLE}, #{miles,jdbcType=DOUBLE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xxl.job.executor.entity.GpsSnapshot" >
+    update t_gps_snapshot
+    set alarm_status = #{alarmStatus,jdbcType=INTEGER},
+      vehicle_status = #{vehicleStatus,jdbcType=INTEGER},
+      lat = #{lat,jdbcType=DOUBLE},
+      lon = #{lon,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      speed = #{speed,jdbcType=DOUBLE},
+      direction = #{direction,jdbcType=DOUBLE},
+      time = #{time,jdbcType=BIGINT},
+      mile = #{mile,jdbcType=DOUBLE},
+      oil = #{oil,jdbcType=DOUBLE},
+      speed2 = #{speed2,jdbcType=DOUBLE},
+      signal_status = #{signalStatus,jdbcType=INTEGER},
+      bst = #{bst,jdbcType=INTEGER},
+      io_status = #{ioStatus,jdbcType=INTEGER},
+      analog = #{analog,jdbcType=VARCHAR},
+      wifi = #{wifi,jdbcType=INTEGER},
+      satellite_num = #{satelliteNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      vendor_code = #{vendorCode,jdbcType=VARCHAR},
+      heartbeat_time = #{heartbeatTime,jdbcType=VARCHAR},
+      bst_time = #{bstTime,jdbcType=BIGINT},
+      location_time = #{locationTime,jdbcType=DATE},
+      alarm_time = #{alarmTime,jdbcType=DATE},
+      protocol_type = #{protocolType,jdbcType=VARCHAR},
+      voltage = #{voltage,jdbcType=DOUBLE},
+      miles = #{miles,jdbcType=DOUBLE}
+    where device_code = #{deviceCode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select device_code, alarm_status, vehicle_status, lat, lon, height, speed, direction, 
+    time, mile, oil, speed2, signal_status, bst, io_status, analog, wifi, satellite_num, 
+    create_time, vendor_code, heartbeat_time, bst_time, location_time, alarm_time, protocol_type, 
+    voltage, miles
+    from t_gps_snapshot
+    where device_code = #{deviceCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select device_code, alarm_status, vehicle_status, lat, lon, height, speed, direction, 
+    time, mile, oil, speed2, signal_status, bst, io_status, analog, wifi, satellite_num, 
+    create_time, vendor_code, heartbeat_time, bst_time, location_time, alarm_time, protocol_type, 
+    voltage, miles
+    from t_gps_snapshot
+  </select>
+  <select id="getSnapshotsByList" parameterType="java.util.List" resultMap="BaseResultMap">
+    select device_code, lon, lat from t_gps_snapshot where device_code in
+    <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
+</mapper>
